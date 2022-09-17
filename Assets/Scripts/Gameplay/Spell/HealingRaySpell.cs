@@ -1,4 +1,5 @@
 using System;
+using Logic;
 using Logic.Enemy;
 using UnityEngine;
 
@@ -35,6 +36,9 @@ namespace Services.Spell
             
             if(CanHeal())
                 Heal();
+
+            Vector3 direction = GameObject.FindObjectOfType<PlayerMove>().transform.position - _target.transform.position;
+            _target.GetComponent<Rigidbody>().velocity = direction.normalized * 2f;
         }
 
         private bool CanHeal() => Time.time - _lastHeal > _healTimeout;
@@ -77,6 +81,9 @@ namespace Services.Spell
             
             if(CanDamage())
                 Damage();
+            
+            Vector3 direction = _target.transform.position - GameObject.FindObjectOfType<PlayerMove>().transform.position;
+            _target.GetComponent<Rigidbody>().velocity = direction.normalized * 2f;
         }
 
         private bool CanDamage() => Time.time - _lastDamage > _damageTimeout;
