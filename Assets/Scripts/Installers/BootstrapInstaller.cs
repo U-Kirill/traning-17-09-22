@@ -1,16 +1,20 @@
-using UnityEngine;
+using Services;
 using UnityEngine.SceneManagement;
 using Zenject;
 
-public class BootstrapInstaller : MonoInstaller, IInitializable
+namespace Installers
 {
-    public override void InstallBindings()
+    public class BootstrapInstaller : MonoInstaller, IInitializable
     {
-        Container.BindInterfacesTo<BootstrapInstaller>().FromInstance(this).AsSingle();
-    }
+        public override void InstallBindings()
+        {
+            Container.BindInterfacesTo<BootstrapInstaller>().FromInstance(this).AsSingle();
+            Container.BindInterfacesTo<InputService>().AsSingle();
+        }
 
-    public void Initialize()
-    {
-        SceneManager.LoadScene("Game");
+        public void Initialize()
+        {
+            SceneManager.LoadScene("Game");
+        }
     }
 }
