@@ -35,7 +35,7 @@ namespace Logic.Enemy
             int overDamage = Mathf.Max(amount - Current, 0);
             int damage = amount - overDamage;
             Current -= damage;
-
+            Debug.Log($"Damage {Current}");
             Damaged?.Invoke();
         }
         
@@ -51,7 +51,7 @@ namespace Logic.Enemy
             int overHeal = Mathf.Max(amount - maxPossibleHeal, 0);
             int heal = amount - overHeal;
             Current += heal;
-
+            Debug.Log($"Heal {Current}");
             Healed?.Invoke();
         }
     }

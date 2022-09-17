@@ -29,10 +29,14 @@ namespace Services.Spell
 
         public void Tick()
         {
-            foreach (ISpell spell in _active) 
+            foreach (ISpell spell in _active.ToArray()) 
                 spell.Update();
         }
 
-        private void OnSpellEnd(ISpell spell) => _active.Remove(spell);
+        private void OnSpellEnd(ISpell spell)
+        {
+            Debug.Log("OnEnd");
+            _active.Remove(spell);
+        }
     }
 }

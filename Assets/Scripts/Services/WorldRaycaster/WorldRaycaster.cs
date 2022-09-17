@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using Services.Spell;
 using UnityEngine;
 
@@ -12,12 +13,10 @@ namespace Services.WorldRaycaster
 
             if (Physics.Raycast(screenRay, out RaycastHit hit))
             {
-                if (hit.collider.TryGetComponent(out SpellTarget spellTarget))
-                {
-                    Debug.Log($"set {hit.point}");
-                    spellTarget.LastTouch = hit.point;
-                    return spellTarget.Type == type ? spellTarget : null;
-                }
+                List<SpellTarget> spellTargets = hit.collider.GetComponents<SpellTarget>().ToList();
+                spellTargets.ForEach(x => x.LastTouch = hit.point);
+
+                return spellTargets.FirstOrDefault(x => x.Type == type);
             }
 
             return null;

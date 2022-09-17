@@ -12,7 +12,9 @@ namespace Services.Spell
         {
             _spells = new Dictionary<SpellTypeId, Func<ISpell>>
             {
-                [SpellTypeId.HealingPedestal] = instantiator.Instantiate<HealingPedestalSpell>
+                [SpellTypeId.HealingPedestal] = instantiator.Instantiate<HealingPedestalSpell>,
+                [SpellTypeId.HealingRay] = instantiator.Instantiate<HealingRaySpell>,
+                [SpellTypeId.DamageRay] = instantiator.Instantiate<DamageRaySpell>
             };
         }
 
