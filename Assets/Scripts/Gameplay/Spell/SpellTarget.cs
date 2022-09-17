@@ -5,8 +5,8 @@ namespace Services.Spell
 {
     public class SpellTarget : MonoBehaviour
     {
-        [SerializeField] private SpellTypeId[] _spell;
+        [SerializeField] private SpellTypeId _type;
 
-        public IReadOnlyList<SpellTypeId> Spell => _spell;
+        public SpellTypeId Type => _type;
     }
 }

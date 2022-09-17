@@ -1,5 +1,6 @@
 using Services;
 using Services.Spell;
+using Services.WorldRaycaster;
 using UnityEngine.SceneManagement;
 using Zenject;
 
@@ -11,6 +12,7 @@ namespace Installers
         {
             Container.BindInterfacesTo<BootstrapInstaller>().FromInstance(this).AsSingle();
             Container.BindInterfacesTo<InputService>().AsSingle();
+            Container.BindInterfacesTo<WorldRaycaster>().AsSingle();
             Container.BindInterfacesTo<GameFactory>().AsSingle();
             Container.BindInterfacesTo<SpellFactory>().AsSingle();
             Container.BindInterfacesTo<SpellService>().AsSingle();

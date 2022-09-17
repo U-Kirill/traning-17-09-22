@@ -14,9 +14,9 @@ namespace Services.Spell
 
         public event Action<ISpell> Ended;
         
-        public void Cast()
+        public void Cast(SpellTarget spellTarget)
         {
-            _gameFactory.CreateHealingPedestal(Vector3.zero);
+            _gameFactory.CreateHealingPedestal(spellTarget.transform.position);
             Ended?.Invoke(this);
         }
 
