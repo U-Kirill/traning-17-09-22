@@ -16,7 +16,7 @@ namespace Logic.Enemy
 
         public float HealPercent => Current / (float)Max;
 
-        private void Start()
+        private void Awake()
         {
             MakeFull();
         }

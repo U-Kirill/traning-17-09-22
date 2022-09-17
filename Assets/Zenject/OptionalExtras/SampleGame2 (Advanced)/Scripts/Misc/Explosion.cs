@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 #pragma warning disable 649
@@ -16,11 +17,16 @@ namespace Zenject.SpaceFighter
 
         IMemoryPool _pool;
 
+        private void Start()
+        {
+            _startTime = Time.realtimeSinceStartup;
+        }
+
         public void Update()
         {
             if (Time.realtimeSinceStartup - _startTime > _lifeTime)
             {
-                _pool.Despawn(this);
+                Destroy(gameObject);
             }
         }
 

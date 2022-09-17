@@ -56,8 +56,8 @@ namespace Services.Spell
         
         private EnemyHealth _target;
         private float _lastDamage;
-        private float _damageTimeout = 1;
-        private int _amountPerDamage = 3;
+        private float _damageTimeout = 0.5f;
+        private int _amountPerDamage = 20;
 
         public event Action<ISpell> Ended;
 
@@ -73,7 +73,7 @@ namespace Services.Spell
 
         public void Update()
         {
-            if (_input.Value != Vector2.zero)
+            if (_target == null || _input.Value != Vector2.zero)
             {
                 Ended?.Invoke(this);
                 return;
