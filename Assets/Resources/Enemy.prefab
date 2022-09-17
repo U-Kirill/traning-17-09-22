@@ -132,6 +132,7 @@ GameObject:
   - component: {fileID: 284729625464270406}
   - component: {fileID: 339349195}
   - component: {fileID: 339349196}
+  - component: {fileID: 339349197}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
@@ -298,7 +299,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e4ed629a51d4773886ba8b3d9c9623c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _radius: 5
+  _radius: 2
   _explosionForce: 100
   _particle: {fileID: 19800002, guid: 185972cb8011a1449b7360c07a62fdf2, type: 3}
 --- !u!114 &339349196
@@ -314,6 +315,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _death: {fileID: 284729625464270406}
+  _explosion: {fileID: 339349195}
+--- !u!114 &339349197
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6312132632416602499}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e9471b94ee34a85b10edc3fd1f25d95, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   _explosion: {fileID: 339349195}
 --- !u!1 &6312132633030473977
 GameObject:

@@ -21,6 +21,7 @@ namespace Installers
             Container.BindInterfacesTo<WorldRaycaster>().AsSingle();
             Container.BindInterfacesTo<SpellFactory>().AsSingle();
             Container.BindInterfacesTo<SpellService>().AsSingle();
+            Container.Bind<PlayerHolder>().AsSingle();
         }
 
         public void Initialize()

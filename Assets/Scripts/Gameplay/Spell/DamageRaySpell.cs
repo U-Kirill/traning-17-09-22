@@ -1,23 +1,22 @@
 using System;
-using Logic;
 using Logic.Enemy;
 using UnityEngine;
 
 namespace Services.Spell
 {
-    public class HealingRaySpell : ISpell
+    public class DamageRaySpell : ISpell
     {
         private readonly IInputService _input;
         
         private EnemyHealth _target;
-        private float _lastHeal;
-        private float _healTimeout = 1;
-        private int _amountPerHeal = 3;
+        private float _lastDamage;
+        private float _damageTimeout = 0.5f;
+        private int _amountPerDamage = 4;
         private PlayerHolder _playerHolder;
 
         public event Action<ISpell> Ended;
 
-        public HealingRaySpell(IInputService inputService, PlayerHolder playerHolder)
+        public DamageRaySpell(IInputService inputService, PlayerHolder playerHolder)
         {
             _playerHolder = playerHolder;
             _input = inputService;
@@ -30,25 +29,25 @@ namespace Services.Spell
 
         public void Update()
         {
-            if (_input.Value != Vector2.zero)
+            if (_target == null || _input.Value != Vector2.zero)
             {
                 Ended?.Invoke(this);
                 return;
             }
             
-            if(CanHeal())
-                Heal();
-
-            Vector3 direction = _playerHolder.Player.position - _target.transform.position;
+            if(CanDamage())
+                Damage();
+            
+            Vector3 direction = _target.transform.position - _playerHolder.Player.position;
             _target.GetComponent<Rigidbody>().velocity = direction.normalized * 2f;
         }
 
-        private bool CanHeal() => Time.time - _lastHeal > _healTimeout;
+        private bool CanDamage() => Time.time - _lastDamage > _damageTimeout;
 
-        private void Heal()
+        private void Damage()
         {
-            _lastHeal = Time.time;
-            _target.Heal(_amountPerHeal);
+            _lastDamage = Time.time;
+            _target.Damage(_amountPerDamage);
         }
     }
 }
