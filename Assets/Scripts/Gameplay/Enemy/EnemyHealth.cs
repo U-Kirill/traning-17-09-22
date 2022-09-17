@@ -14,6 +14,8 @@ namespace Logic.Enemy
 
         public int Current { get; private set; }
 
+        public float HealPercent => Current / (float)Max;
+
         private void Start()
         {
             MakeFull();
