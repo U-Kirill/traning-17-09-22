@@ -4,11 +4,6 @@ using UnityEngine;
 
 namespace Services.WorldRaycaster
 {
-    public interface IWorldRaycaster
-    {
-        SpellTarget GetSpellOrNull(SpellTypeId type);
-    }
-
     public class WorldRaycaster : IWorldRaycaster
     {
         public SpellTarget GetSpellOrNull(SpellTypeId type)
@@ -17,10 +12,10 @@ namespace Services.WorldRaycaster
 
             if (Physics.Raycast(screenRay, out RaycastHit hit))
             {
-                Debug.Log("hit");
                 if (hit.collider.TryGetComponent(out SpellTarget spellTarget))
                 {
-                    Debug.Log("has component");
+                    Debug.Log($"set {hit.point}");
+                    spellTarget.LastTouch = hit.point;
                     return spellTarget.Type == type ? spellTarget : null;
                 }
             }

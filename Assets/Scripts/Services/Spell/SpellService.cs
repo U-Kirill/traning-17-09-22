@@ -8,17 +8,16 @@ namespace Services.Spell
     public class SpellService : ITickable, ISpellService
     {
         private readonly ISpellFactory _spellFactory;
-        private readonly IWorldRaycaster _worldRaycaster;
         private readonly List<ISpell> _active = new List<ISpell>();
 
-        public SpellService(ISpellFactory spellFactory, IWorldRaycaster worldRaycaster)
+        public SpellService(ISpellFactory spellFactory)
         {
             _spellFactory = spellFactory;
-            _worldRaycaster = worldRaycaster;
         }
 
         public void CastFor(SpellTarget spellTarget)
         {
+            Debug.Log("cast");
             var type = spellTarget.Type;
             
             ISpell spell = _spellFactory.GetSpell(type);

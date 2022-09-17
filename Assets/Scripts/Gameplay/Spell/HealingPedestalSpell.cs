@@ -16,7 +16,7 @@ namespace Services.Spell
         
         public void Cast(SpellTarget spellTarget)
         {
-            _gameFactory.CreateHealingPedestal(spellTarget.transform.position);
+            _gameFactory.CreateHealingPedestal(spellTarget.LastTouch);
             Ended?.Invoke(this);
         }
 

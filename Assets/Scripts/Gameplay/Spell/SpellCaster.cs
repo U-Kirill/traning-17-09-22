@@ -19,9 +19,8 @@ namespace Services.Spell
 
         private void Update()
         {
-            if (Input.GetMouseButton(0))
+            if (Input.GetMouseButtonDown(0))
             {
-                Debug.Log("down");
                 SpellTarget target = _worldRaycaster.GetSpellOrNull(SpellTypeId.HealingPedestal);
                 if(target != null)
                     _spellService.CastFor(target);

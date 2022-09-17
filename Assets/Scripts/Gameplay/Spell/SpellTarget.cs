@@ -8,5 +8,6 @@ namespace Services.Spell
         [SerializeField] private SpellTypeId _type;
 
         public SpellTypeId Type => _type;
+        public Vector3 LastTouch { get; set; }
     }
 }
